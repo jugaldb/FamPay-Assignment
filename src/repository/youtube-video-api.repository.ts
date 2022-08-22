@@ -1,5 +1,5 @@
 import { connect } from "../config/db.config";
-import { Videos } from "../model/youtube-video-api.model";
+import { Videos, VideosInterface } from "../model/youtube-video-api.model";
 
 export class YoutubeVideoAPIRepository {
   private db: any = {};
@@ -25,9 +25,13 @@ export class YoutubeVideoAPIRepository {
     }
   }
 
-  async saveVideos() {
+  async saveVideos(toBeSaved: VideosInterface[]) {
     try {
-      const videos = await this.youtubeVideoAPIRepository.findAll();
+      await this.youtubeVideoAPIRepository.destroy({
+        where: {},
+        truncate: true,
+      });
+      const videos = await this.youtubeVideoAPIRepository.bulkCreate(toBeSaved);
       console.log("videos:::", videos);
       return videos;
     } catch (err) {

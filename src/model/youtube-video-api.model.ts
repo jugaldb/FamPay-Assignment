@@ -1,6 +1,6 @@
 import { Table, Column, Model } from "sequelize-typescript";
 
-interface VideosInterface {
+export interface VideosInterface {
   video_id: string;
   name: string;
   published_at: string;
@@ -9,7 +9,6 @@ interface VideosInterface {
   description: string;
   channel_name: string;
   created_date: Date;
-  updated_date: Date;
 }
 
 export interface IngredientOuput extends Required<VideosInterface> {}
@@ -39,7 +38,4 @@ export class Videos extends Model<VideosInterface> implements VideosInterface {
 
   @Column
   created_date!: Date;
-
-  @Column
-  updated_date!: Date;
 }
