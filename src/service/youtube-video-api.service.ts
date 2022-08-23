@@ -11,8 +11,8 @@ export class YoutubeVideoAPIService {
     return await this.youtubeVideoAPIRepository.getVideos(limit, offset);
   }
 
-  async searchVideos(q: string) {
-    return await this.youtubeVideoAPIRepository.searchVideos(q);
+  async searchVideos(q: string, offset: number) {
+    return await this.youtubeVideoAPIRepository.searchVideos(q, offset);
   }
 
   async saveVideos(data: any, num: number) {

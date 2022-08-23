@@ -19,29 +19,34 @@ export class YoutubeVideoAPIRepository {
 
   async getVideos(limit: number, offset: number) {
     try {
+      const count = await this.youtubeVideoAPIRepository.count();
       const videos = await this.youtubeVideoAPIRepository.findAll({
         attributes: { exclude: ["search_doc_weights"] },
         order: [["published_at", "DESC"]],
         limit,
         offset,
       });
-      return videos;
+      return {
+        videos: videos,
+        pages: count / 10,
+      };
     } catch (err) {
       console.log(err);
       return [];
     }
   }
 
-  async searchVideos(q: string) {
+  async searchVideos(q: string, offset: number) {
     try {
       const videos = await this.sequelize.query(
-        "SELECT * FROM videos WHERE search_doc_weights @@ plainto_tsquery(:query) order by ts_rank(search_doc_weights, plainto_tsquery(:query)) desc",
+        "SELECT * FROM videos WHERE search_doc_weights @@ plainto_tsquery(:query) order by ts_rank(search_doc_weights, plainto_tsquery(:query)) desc LIMIT :limit OFFSET :offset",
         {
-          replacements: { query: q },
+          replacements: { query: q, limit: 10, offset: offset },
           type: QueryTypes.SELECT,
         }
       );
-      return videos;
+      let pages = videos.length / 10;
+      return { videos, pages };
     } catch (err) {
       console.log(err);
       return [];
