@@ -24,6 +24,7 @@ export const getData = async (query: string) => {
   } else {
     await callYoutubeDataAPIAndSaveData({
       part: ["snippet"],
+      q: query,
       maxResults: 50,
       pageToken: youtubeNext,
     });

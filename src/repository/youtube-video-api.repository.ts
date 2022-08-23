@@ -56,7 +56,12 @@ export class YoutubeVideoAPIRepository {
           truncate: true,
         });
       }
-      const videos = await this.youtubeVideoAPIRepository.bulkCreate(toBeSaved);
+      const videos = await this.youtubeVideoAPIRepository.bulkCreate(
+        toBeSaved,
+        {
+          updateOnDuplicate: ["video_id"],
+        }
+      );
       this.sequelize.query(
         "update videos " +
           "set search_doc_weights = setweight(to_tsvector(name), 'A') || setweight(to_tsvector(coalesce(description, '')), 'B'); " +
