@@ -34,20 +34,20 @@ const callYoutubeDataAPIAndSaveData = async (requestParams: any) => {
     version: "v3",
     auth: key,
   });
-  // youtube.search.list(requestParams, function (err: any, data: any) {
-  //   if (err) {
-  //     console.error("Error: " + err);
-  //   }
-  //   if (data) {
-  //     console.log(data);
-  //     // console.log(data.data.items.length);
-  //     youtubeVideoAPIController.saveVideos(data.data.items, number);
-  //     number++;
-  //     youtubeNext = data.data.nextPageToken ? data.data.nextPageToken : "null";
-  //     if (youtubeNext == "null") {
-  //       number = 0;
-  //     } // next page token
-  //     // baseDate.setDate(baseDate.getDate() - 30); // base date subtract 30 days to get older videos
-  //   }
-  // });
+  youtube.search.list(requestParams, function (err: any, data: any) {
+    if (err) {
+      console.error("Error: " + err);
+    }
+    if (data) {
+      console.log(data);
+      // console.log(data.data.items.length);
+      youtubeVideoAPIController.saveVideos(data.data.items, number);
+      number++;
+      youtubeNext = data.data.nextPageToken ? data.data.nextPageToken : "null";
+      if (youtubeNext == "null") {
+        number = 0;
+      } // next page token
+      // baseDate.setDate(baseDate.getDate() - 30); // base date subtract 30 days to get older videos
+    }
+  });
 };

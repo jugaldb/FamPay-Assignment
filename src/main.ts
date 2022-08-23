@@ -51,17 +51,39 @@ class App {
       console.log("revcieved");
       let limit = req.query.limit;
       let offset = req.query.offset;
+      let orderBy = req.query.orderBy!;
+      let orderType = req.query.orderType!;
+      if (!orderBy) {
+        orderBy = "";
+        orderType = "";
+      }
       this.youtubeVideoAPIController
-        .getVideos(Number(limit), Number(offset))
+        .getVideos(
+          Number(limit),
+          Number(offset),
+          orderBy.toString(),
+          orderType.toString()
+        )
         .then((data) => res.json(data));
     });
 
     this.express.get("/api/search", (req, res) => {
       let offset = req.query.offset;
       let q = req.query.q;
+      let orderBy = req.query.orderBy!;
+      let orderType = req.query.orderType!;
+      if (!orderBy) {
+        orderBy = "";
+        orderType = "";
+      }
       q = q!.toString();
       this.youtubeVideoAPIController
-        .searchVideos(q, Number(offset))
+        .searchVideos(
+          q,
+          Number(offset),
+          orderBy.toString(),
+          orderType.toString()
+        )
         .then((data) => res.json(data));
     });
 

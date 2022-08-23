@@ -6,22 +6,57 @@ export class YoutubeVideoAPIController {
     this.youtubeVideoAPIService = new YoutubeVideoAPIService();
   }
 
-  async getVideos(limit: number, offset: number) {
+  async getVideos(
+    limit: number,
+    offset: number,
+    orderBy: string,
+    orderType: string
+  ) {
     if (!limit) {
       limit = 10;
     }
     if (!offset) {
       offset = 0;
     }
-    return await this.youtubeVideoAPIService.getVideos(limit, offset);
+    if (orderBy == "") {
+      orderBy = "published_at";
+      orderType = "DESC";
+    } else {
+      if (orderType == "a") {
+        orderType = "ASC";
+      } else {
+        orderType = "DESC";
+      }
+    }
+    return await this.youtubeVideoAPIService.getVideos(
+      limit,
+      offset,
+      orderBy,
+      orderType
+    );
   }
 
-  async searchVideos(q: string, offset: number) {
+  async searchVideos(
+    q: string,
+    offset: number,
+    orderBy: string,
+    orderType: string
+  ) {
     if (q == null) {
       q = "";
     }
     q = q.toString();
-    return await this.youtubeVideoAPIService.searchVideos(q, offset);
+    if (orderType.toLowerCase() == "a") {
+      orderType = "ASC";
+    } else {
+      orderType = "DESC";
+    }
+    return await this.youtubeVideoAPIService.searchVideos(
+      q,
+      offset,
+      orderBy,
+      orderType
+    );
   }
 
   async saveVideos(data: any, num: number) {

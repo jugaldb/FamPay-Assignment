@@ -17,18 +17,34 @@ export class YoutubeVideoAPIRepository {
     this.sequelize = this.db.sequelize;
   }
 
-  async getVideos(limit: number, offset: number) {
+  async getVideos(
+    limit: number,
+    offset: number,
+    orderBy: string,
+    orderType: string
+  ) {
     try {
-      const count = await this.youtubeVideoAPIRepository.count();
-      const videos = await this.youtubeVideoAPIRepository.findAll({
-        attributes: { exclude: ["search_doc_weights"] },
-        order: [["published_at", "DESC"]],
-        limit,
-        offset,
-      });
+      let count = await this.youtubeVideoAPIRepository.count();
+      let videos;
+      if (orderBy == "published_at" && orderType == "DESC") {
+        videos = await this.youtubeVideoAPIRepository.findAll({
+          attributes: { exclude: ["search_doc_weights"] },
+          order: [["published_at", "DESC"]],
+          limit,
+          offset,
+        });
+      } else {
+        videos = await this.youtubeVideoAPIRepository.findAll({
+          attributes: { exclude: ["search_doc_weights"] },
+          order: [[orderBy, orderType]],
+          limit,
+          offset,
+        });
+      }
+
       return {
         videos: videos,
-        pages: count / 10,
+        pages: Math.ceil(count / 10),
       };
     } catch (err) {
       console.log(err);
@@ -36,16 +52,50 @@ export class YoutubeVideoAPIRepository {
     }
   }
 
-  async searchVideos(q: string, offset: number) {
+  async searchVideos(
+    q: string,
+    offset: number,
+    orderBy: string,
+    orderType: string
+  ) {
     try {
-      const videos = await this.sequelize.query(
-        "SELECT * FROM videos WHERE search_doc_weights @@ plainto_tsquery(:query) order by ts_rank(search_doc_weights, plainto_tsquery(:query)) desc LIMIT :limit OFFSET :offset",
+      let videos;
+      if (orderBy != "") {
+        videos = await this.sequelize.query(
+          'SELECT * FROM videos WHERE search_doc_weights @@ plainto_tsquery(:query) order by "' +
+            orderBy +
+            '" ' +
+            orderType +
+            " LIMIT :limit OFFSET :offset",
+          {
+            replacements: {
+              query: q,
+              limit: 10,
+              offset: offset,
+              orderBy,
+            },
+            type: QueryTypes.SELECT,
+          }
+        );
+      } else {
+        console.log("here");
+        videos = await this.sequelize.query(
+          "SELECT * FROM videos WHERE search_doc_weights @@ plainto_tsquery(:query) order by ts_rank(search_doc_weights, plainto_tsquery(:query)) desc LIMIT :limit OFFSET :offset",
+          {
+            replacements: { query: q, limit: 10, offset: offset },
+            type: QueryTypes.SELECT,
+          }
+        );
+      }
+
+      const count = await this.sequelize.query(
+        "SELECT video_id FROM videos WHERE search_doc_weights @@ plainto_tsquery(:query) order by ts_rank(search_doc_weights, plainto_tsquery(:query)) desc",
         {
-          replacements: { query: q, limit: 10, offset: offset },
+          replacements: { query: q },
           type: QueryTypes.SELECT,
         }
       );
-      let pages = videos.length / 10;
+      let pages = Math.ceil(count.length / 10);
       return { videos, pages };
     } catch (err) {
       console.log(err);

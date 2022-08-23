@@ -7,12 +7,32 @@ export class YoutubeVideoAPIService {
     this.youtubeVideoAPIRepository = new YoutubeVideoAPIRepository();
   }
 
-  async getVideos(limit: number, offset: number) {
-    return await this.youtubeVideoAPIRepository.getVideos(limit, offset);
+  async getVideos(
+    limit: number,
+    offset: number,
+    orderBy: string,
+    orderType: string
+  ) {
+    return await this.youtubeVideoAPIRepository.getVideos(
+      limit,
+      offset,
+      orderBy,
+      orderType
+    );
   }
 
-  async searchVideos(q: string, offset: number) {
-    return await this.youtubeVideoAPIRepository.searchVideos(q, offset);
+  async searchVideos(
+    q: string,
+    offset: number,
+    orderBy: string,
+    orderType: string
+  ) {
+    return await this.youtubeVideoAPIRepository.searchVideos(
+      q,
+      offset,
+      orderBy,
+      orderType
+    );
   }
 
   async saveVideos(data: any, num: number) {

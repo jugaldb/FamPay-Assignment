@@ -22,7 +22,7 @@ export const maintainAndGetKeys = (key?: string): string => {
       // console.log("previous uses -> " + num);
       num++;
       // console.log("current uses -> " + num);
-      if (arrayOut[i].uses <= 2) {
+      if (arrayOut[i].uses <= 10) {
         arrayOut[i].uses = num;
         return_key = arrayOut[i].key;
       } else if (i + 1 >= arrayOut.length) {
