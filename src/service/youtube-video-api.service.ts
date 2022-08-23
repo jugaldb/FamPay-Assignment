@@ -10,7 +10,7 @@ export class YoutubeVideoAPIService {
   async getVideos() {
     return await this.youtubeVideoAPIRepository.getVideos();
   }
-  async saveVideos(data: any) {
+  async saveVideos(data: any, num: number) {
     let toBeSaved: VideosInterface[] = [];
     for (let d of data) {
       let obj: VideosInterface = {
@@ -25,6 +25,6 @@ export class YoutubeVideoAPIService {
       };
       toBeSaved.push(obj);
     }
-    return await this.youtubeVideoAPIRepository.saveVideos(toBeSaved);
+    return await this.youtubeVideoAPIRepository.saveVideos(toBeSaved, num);
   }
 }

@@ -14,7 +14,7 @@ export interface VideosInterface {
 export interface IngredientOuput extends Required<VideosInterface> {}
 
 @Table
-export class Videos extends Model<VideosInterface> implements VideosInterface {
+export class videos extends Model<VideosInterface> implements VideosInterface {
   @Column({ primaryKey: true })
   video_id!: string;
 
@@ -38,4 +38,7 @@ export class Videos extends Model<VideosInterface> implements VideosInterface {
 
   @Column
   created_date!: Date;
+
+  @Column("tsvector")
+  search_doc_weights: any;
 }

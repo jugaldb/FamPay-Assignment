@@ -4,7 +4,7 @@ import { YoutubeVideoAPIController } from "./controller/youtube-video-api.contro
 import * as fs from "fs";
 import "dotenv/config";
 import "./cron/youtube-video-get.cron";
-
+import { numCron } from "./config/start.config";
 class App {
   public express: express.Application;
   public youtubeVideoAPIController: YoutubeVideoAPIController;

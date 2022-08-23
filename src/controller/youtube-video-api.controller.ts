@@ -10,7 +10,7 @@ export class YoutubeVideoAPIController {
     return await this.youtubeVideoAPIService.getVideos();
   }
 
-  async saveVideos(data: any) {
-    return await this.youtubeVideoAPIService.saveVideos(data);
+  async saveVideos(data: any, num: number) {
+    return await this.youtubeVideoAPIService.saveVideos(data, num);
   }
 }

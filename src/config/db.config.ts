@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import { Videos } from "../model/youtube-video-api.model";
+import { videos } from "../model/youtube-video-api.model";
 
 export const connect = () => {
   const hostName = process.env.HOST!;
@@ -25,7 +25,7 @@ export const connect = () => {
     },
   });
 
-  sequelize.addModels([Videos]);
+  sequelize.addModels([videos]);
 
   const db: any = {};
   db.Sequelize = Sequelize;
