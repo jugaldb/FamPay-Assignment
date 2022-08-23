@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  fampay_backend:
+    container_name: fampay_backend
+    image: jugaldb/fampay-backend:latest
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - USER=jugaldb
+      - PASSWORD=postgres
+      - DB=jugaldb
+      - HOST=host.docker.internal # NAME OF THE SERVICE
+      - DIALECT=postgres
+      - GOOGLE_API_KEY=AIzaSyD0jnYn2BEOtgoOKdSl3zNaLko471nNmXU
+    depends_on:
+      - fampay_db
+  fampay_db:
+    container_name: fampay_db
+    image: "postgres:12"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=jugaldb
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=jugaldb
+    volumes:
+      - nps_data:/var/lib/postgresql/data
+volumes:
+  nps_data: {}
