@@ -5,6 +5,8 @@ import * as fs from "fs";
 import "dotenv/config";
 import "./cron/youtube-video-get.cron";
 import { numCron } from "./config/start.config";
+import "./utils/maintain_API_keys";
+
 class App {
   public express: express.Application;
   public youtubeVideoAPIController: YoutubeVideoAPIController;

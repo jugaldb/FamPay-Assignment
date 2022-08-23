@@ -1,14 +1,11 @@
 import { google } from "googleapis";
 import { YoutubeVideoAPIController } from "../controller/youtube-video-api.controller";
 import { numCron as num } from "../config/start.config";
+import { maintainAndGetKeys } from "./maintain_API_keys";
 let number = num;
 let youtubeNext: string;
 var baseDate = new Date("May 14, 2022 12:00:00");
-
-var youtube = google.youtube({
-  version: "v3",
-  auth: process.env.GOOGLE_API_KEY,
-});
+let key = process.env.DEFAULT_KEY;
 
 const youtubeVideoAPIController = new YoutubeVideoAPIController();
 
@@ -32,20 +29,25 @@ export const getData = async (query: string) => {
 };
 
 const callYoutubeDataAPIAndSaveData = async (requestParams: any) => {
-  youtube.search.list(requestParams, function (err: any, data: any) {
-    if (err) {
-      console.error("Error: " + err);
-    }
-    if (data) {
-      console.log(data);
-      // console.log(data.data.items.length);
-      youtubeVideoAPIController.saveVideos(data.data.items, number);
-      number++;
-      youtubeNext = data.data.nextPageToken ? data.data.nextPageToken : "null";
-      if (youtubeNext == "null") {
-        number = 0;
-      } // next page token
-      // baseDate.setDate(baseDate.getDate() - 30); // base date subtract 30 days to get older videos
-    }
+  key = maintainAndGetKeys(key);
+  var youtube = google.youtube({
+    version: "v3",
+    auth: key,
   });
+  // youtube.search.list(requestParams, function (err: any, data: any) {
+  //   if (err) {
+  //     console.error("Error: " + err);
+  //   }
+  //   if (data) {
+  //     console.log(data);
+  //     // console.log(data.data.items.length);
+  //     youtubeVideoAPIController.saveVideos(data.data.items, number);
+  //     number++;
+  //     youtubeNext = data.data.nextPageToken ? data.data.nextPageToken : "null";
+  //     if (youtubeNext == "null") {
+  //       number = 0;
+  //     } // next page token
+  //     // baseDate.setDate(baseDate.getDate() - 30); // base date subtract 30 days to get older videos
+  //   }
+  // });
 };
