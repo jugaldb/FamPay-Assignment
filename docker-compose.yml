@@ -9,12 +9,12 @@ services:
       - "3000:3000"
     environment:
       - PORT=3000
-      - USER=jugaldb
-      - PASSWORD=postgres
-      - DB=jugaldb
+      - USER=$USER
+      - PASSWORD=$PASSWORD
+      - DB=$DB
       - HOST=host.docker.internal # NAME OF THE SERVICE
-      - DIALECT=postgres
-      - GOOGLE_API_KEY=AIzaSyD0jnYn2BEOtgoOKdSl3zNaLko471nNmXU
+      - DIALECT=$DIALECT
+      - GOOGLE_API_KEY=$GOOGLE_API_KEY
     depends_on:
       - fampay_db
   fampay_db:
