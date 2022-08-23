@@ -7,9 +7,14 @@ export class YoutubeVideoAPIService {
     this.youtubeVideoAPIRepository = new YoutubeVideoAPIRepository();
   }
 
-  async getVideos() {
-    return await this.youtubeVideoAPIRepository.getVideos();
+  async getVideos(limit: number, offset: number) {
+    return await this.youtubeVideoAPIRepository.getVideos(limit, offset);
   }
+
+  async searchVideos(q: string) {
+    return await this.youtubeVideoAPIRepository.searchVideos(q);
+  }
+
   async saveVideos(data: any, num: number) {
     let toBeSaved: VideosInterface[] = [];
     for (let d of data) {

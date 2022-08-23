@@ -1,3 +1,4 @@
+import { QueryTypes } from "sequelize";
 import { connect } from "../config/db.config";
 import { videos, VideosInterface } from "../model/youtube-video-api.model";
 
@@ -16,12 +17,30 @@ export class YoutubeVideoAPIRepository {
     this.sequelize = this.db.sequelize;
   }
 
-  async getVideos() {
+  async getVideos(limit: number, offset: number) {
     try {
       const videos = await this.youtubeVideoAPIRepository.findAll({
         attributes: { exclude: ["search_doc_weights"] },
         order: [["published_at", "DESC"]],
+        limit,
+        offset,
       });
+      return videos;
+    } catch (err) {
+      console.log(err);
+      return [];
+    }
+  }
+
+  async searchVideos(q: string) {
+    try {
+      const videos = await this.sequelize.query(
+        "SELECT * FROM videos WHERE search_doc_weights @@ plainto_tsquery(:query) order by ts_rank(search_doc_weights, plainto_tsquery(:query)) desc",
+        {
+          replacements: { query: q },
+          type: QueryTypes.SELECT,
+        }
+      );
       return videos;
     } catch (err) {
       console.log(err);

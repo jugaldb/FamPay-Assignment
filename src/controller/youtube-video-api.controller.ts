@@ -6,8 +6,22 @@ export class YoutubeVideoAPIController {
     this.youtubeVideoAPIService = new YoutubeVideoAPIService();
   }
 
-  async getVideos() {
-    return await this.youtubeVideoAPIService.getVideos();
+  async getVideos(limit: number, offset: number) {
+    if (!limit) {
+      limit = 10;
+    }
+    if (!offset) {
+      offset = 0;
+    }
+    return await this.youtubeVideoAPIService.getVideos(limit, offset);
+  }
+
+  async searchVideos(q: string) {
+    if (q == null) {
+      q = "";
+    }
+    q = q.toString();
+    return await this.youtubeVideoAPIService.searchVideos(q);
   }
 
   async saveVideos(data: any, num: number) {

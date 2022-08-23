@@ -28,7 +28,19 @@ class App {
 
   private routes(): void {
     this.express.get("/api/video", (req, res) => {
-      this.youtubeVideoAPIController.getVideos().then((data) => res.json(data));
+      let limit = req.query.limit;
+      let offset = req.query.offset;
+      this.youtubeVideoAPIController
+        .getVideos(Number(limit), Number(offset))
+        .then((data) => res.json(data));
+    });
+
+    this.express.get("/api/search", (req, res) => {
+      let q = req.query.q;
+      q = q!.toString();
+      this.youtubeVideoAPIController
+        .searchVideos(q)
+        .then((data) => res.json(data));
     });
 
     this.express.get("/", (req, res, next) => {
