@@ -3,8 +3,8 @@ import express from "express";
 import { YoutubeVideoAPIController } from "./controller/youtube-video-api.controller";
 import * as fs from "fs";
 import "dotenv/config";
-import "./cron/youtube-video-get.cron";
 import { numCron } from "./config/start.config";
+import { cronJob } from "./cron/youtube-video-get.cron";
 import "./utils/maintain_API_keys";
 import cors from "cors";
 
@@ -48,45 +48,76 @@ class App {
     //   next();
     // });
     this.express.get("/api/video", (req, res) => {
-      console.log("revcieved");
-      let limit = req.query.limit;
-      let offset = req.query.offset;
-      let orderBy = req.query.orderBy!;
-      let orderType = req.query.orderType!;
-      if (!orderBy) {
-        orderBy = "";
-        orderType = "";
+      try {
+        console.log("revcieved");
+        let limit = req.query.limit;
+        let offset = req.query.offset;
+        let orderBy = req.query.orderBy!;
+        let orderType = req.query.orderType!;
+        if (!orderBy) {
+          orderBy = "";
+          orderType = "";
+        }
+        this.youtubeVideoAPIController
+          .getVideos(
+            Number(limit),
+            Number(offset),
+            orderBy.toString(),
+            orderType.toString()
+          )
+          .then((data) => res.json(data));
+      } catch (e: any) {
+        res.status(500).json({
+          error: e.toString(),
+        });
       }
-      this.youtubeVideoAPIController
-        .getVideos(
-          Number(limit),
-          Number(offset),
-          orderBy.toString(),
-          orderType.toString()
-        )
-        .then((data) => res.json(data));
     });
 
     this.express.get("/api/search", (req, res) => {
-      let offset = req.query.offset;
-      let q = req.query.q;
-      let orderBy = req.query.orderBy!;
-      let orderType = req.query.orderType!;
-      if (!orderBy) {
-        orderBy = "";
-        orderType = "";
+      try {
+        let offset = req.query.offset;
+        let q = req.query.q;
+        let orderBy = req.query.orderBy!;
+        let orderType = req.query.orderType!;
+        if (!orderBy) {
+          orderBy = "";
+          orderType = "";
+        }
+        q = q!.toString();
+        this.youtubeVideoAPIController
+          .searchVideos(
+            q,
+            Number(offset),
+            orderBy.toString(),
+            orderType.toString()
+          )
+          .then((data) => res.json(data));
+      } catch (e: any) {
+        res.status(500).json({
+          error: e.toString(),
+        });
       }
-      q = q!.toString();
-      this.youtubeVideoAPIController
-        .searchVideos(
-          q,
-          Number(offset),
-          orderBy.toString(),
-          orderType.toString()
-        )
-        .then((data) => res.json(data));
     });
-
+    this.express.get("/startCron", (req, res) => {
+      try {
+        cronJob.start();
+        res.send("Cron started");
+      } catch (e: any) {
+        res.status(500).json({
+          error: e.toString(),
+        });
+      }
+    });
+    this.express.get("/stopCron", (req, res) => {
+      try {
+        cronJob.stop();
+        res.send("Cron stopped");
+      } catch (e: any) {
+        res.status(500).json({
+          error: e.toString(),
+        });
+      }
+    });
     this.express.get("/", (req, res, next) => {
       res.send("Typescript App works!!");
     });
