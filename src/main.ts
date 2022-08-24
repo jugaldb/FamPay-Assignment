@@ -119,7 +119,21 @@ class App {
       }
     });
     this.express.get("/", (req, res, next) => {
-      res.send("Typescript App works!!");
+      res.status(200).json({
+        message:
+          "Hi Recruiters, I am Jugal, and this is my submission for the FamPay - backend engineer role.",
+        important_links: {
+          github_repo: {
+            backend_repo: "https://github.com/jugaldb/FamPay-Assignment",
+            frontend_repo:
+              "https://github.com/jugaldb/fampay-assignment-frontend",
+          },
+          hosted_api: "https://fampay-task-api.jugaldb.com",
+          frontend: "https://fampay-task.jugaldb.com",
+          postman_docs:
+            "https://documenter.getpostman.com/view/10968840/VUqrPd4s",
+        },
+      });
     });
     // handle undefined routes
     this.express.use("*", (req, res, next) => {
