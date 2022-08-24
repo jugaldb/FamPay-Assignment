@@ -23,6 +23,9 @@ Hi recruiters 🙋🏻‍♂️, this is my submission for the assignment-task f
 
 ✅ - It should be scalable and optimised.
 
+
+## Bonus tasks 🌟
+
 ✅ - Add support for supplying multiple API keys so that if quota is exhausted on one, it automatically uses the next available key.
 - Proof of concept
 
