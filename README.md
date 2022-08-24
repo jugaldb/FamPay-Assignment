@@ -1,9 +1,43 @@
 # FamPay-Assignment
 
 Hi recruiters 🙋🏻‍♂️, this is my submission for the assignment-task for the role of ```Backend Engineer``` for which the link can be found: [Notion - Backend Assignment | FamPay](https://www.notion.so/fampay/Backend-Assignment-FamPay-32aa100dbd8a4479878f174ad8f9d990)
+## Features Implemented
 
-Hmm, Lets get a few big questions out of the way quickly. 
+✅ -  Server should call the YouTube API continuously in background (async) with some interval (say 10 seconds) for fetching the latest videos for a predefined search query and should store the data of videos (specifically these fields - Video title, description, publishing datetime, thumbnails URLs and any other fields you require) in a database with proper indexes.
+ 
+✅ - A GET API which returns the stored video data in a paginated response sorted in descending order of published datetime.
 
+✅ - A basic search API to search the stored videos using their title and description.
+
+- The link to the Postman docs: [Postman docs](https://documenter.getpostman.com/view/10968840/VUqrPd4s)
+
+✅ - Dockerize the project. - ```Dockerfile``` and ```docker-compose.yml```
+
+✅ - It should be scalable and optimised.
+
+✅ - Add support for supplying multiple API keys so that if quota is exhausted on one, it automatically uses the next available key.
+- Proof of concept
+  ![Demo](./assets/proof-of-concept.gif)
+
+
+✅ - Make a dashboard to view the stored videos with filters and sorting options (optional)
+
+- It is not the best UI I have designed but given the time constraint and the complexity, this is what I could achieve
+  ![Demo](./assets/Home-page-1.png)
+  ![Demo](./assets/Home-Page-2.png)
+
+
+  - The deployed website can be found on: [Link](https://fampay-task.jugaldb.com)
+
+
+
+✅ - Optimise search api, so that it's able to search videos containing partial match for the search query in either video title or description.
+
+  Example - Video title may be ```LSU football practice report, August 23, 2022``` and if I search for ```LSU Practice``` it still shows up
+
+  ![Demo](./assets/search-optimisation.png)
+
+# Hmm, Lets get a few big questions out of the way quickly. 
 
 ## 1. Why in the world would I choose NodeJs to do this task? 🤯
 
