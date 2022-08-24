@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server.ts",
     "build": "tsc",
-    "start": "tsc && node dist/src/server.js"
+    "start": "tsc && node dist/src/server.js",
+    "pm2": "pm2 start dist/src/server.js --watch -i max"
   },
   "repository": {
     "type": "git",
