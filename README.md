@@ -3,11 +3,11 @@
 Hi recruiters 🙋🏻‍♂️, this is my submission for the assignment-task for the role of ```Backend Engineer``` for which the link can be found: [Notion - Backend Assignment | FamPay](https://www.notion.so/fampay/Backend-Assignment-FamPay-32aa100dbd8a4479878f174ad8f9d990)
 
 ## Important Links:
-- The Backend(main code) repo can be found at: https://github.com/jugaldb/FamPay-Assignment
-- The frontend repo can be found at: https://github.com/jugaldb/fampay-assignment-frontend
-- The link to the frontend deployment is: https://fampay-task.jugaldb.com
-- The link to the Backend deployment is: https://fampay-task-api.jugaldb.com
-- The postman collection can be found at: https://documenter.getpostman.com/view/10968840/VUqrPd4s
+- The Backend(main code) repo can be found at: [Backend repo](https://github.com/jugaldb/FamPay-Assignment)
+- The frontend repo can be found at: [Frontend Repo](https://github.com/jugaldb/fampay-assignment-frontend)
+- The link to the frontend deployment is: [Frontend Deployment](https://fampay-task.jugaldb.com)
+- The link to the Backend deployment is: [Backend Deployment](https://fampay-task-api.jugaldb.com)
+- The postman collection can be found at: [Postman Docs](https://documenter.getpostman.com/view/10968840/VUqrPd4s)
 
 ## Features Implemented
 
