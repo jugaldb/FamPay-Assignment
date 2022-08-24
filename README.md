@@ -7,6 +7,7 @@ Hi recruiters 🙋🏻‍♂️, this is my submission for the assignment-task f
 - The frontend repo can be found at: https://github.com/jugaldb/fampay-assignment-frontend
 - The link to the frontend deployment is: https://fampay-task.jugaldb.com
 - The link to the Backend deployment is: https://fampay-task-api.jugaldb.com
+- The postman collection can be found at: https://documenter.getpostman.com/view/10968840/VUqrPd4s
 
 ## Features Implemented
 
@@ -63,6 +64,16 @@ Hi recruiters 🙋🏻‍♂️, this is my submission for the assignment-task f
 >-  Obviously I am open to comments on these about how can it be better. 
 
 ## Installation
+
+1. Clone the repo ```git clone https://github.com/jugaldb/FamPay-Assignment.git``` (assumes you have git installed).
+2. Install postgres from [Postgres](https://www.postgresql.org/download/)
+3. Setup the database and the connection
+- Create new user ```postgres```
+- Create password for the ```postgres```
+- Create a new database eg: ```create database jugaldb;``` using the psql command line tool
+- Connect to the database using ```\c jugaldb```
+- Create a new table with necessary scripts using SQL using [SQL Command](https://gist.github.com/jugaldb/c8b26910c0f87b7f33e85015db44cdf2)
+
 ## Running the project
 - There are multiple ways to run the Project, once you are done with the prerequisites and the basic installation you can use either:
 
@@ -86,5 +97,9 @@ Hi recruiters 🙋🏻‍♂️, this is my submission for the assignment-task f
 ```npm run start```
 - This command will build the project and compile the TS to JS and run the JS compiled files under the ```/dist folder```
 
+
+### Alternatively you can directly
+- Use: [Frontend](https://fampay-task.jugaldb.com/) to check out the deployment
+- Use: [Backend Link](https://fampay-task-api.jugaldb.com/) with [Postman Docs](https://documenter.getpostman.com/view/10968840/VUqrPd4s) to check the backend.
+
 ## Acknowledgments 
-## Links
