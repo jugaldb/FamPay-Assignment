@@ -3,11 +3,12 @@
 Hi recruiters 🙋🏻‍♂️, this is my submission for the assignment-task for the role of ```Backend Engineer``` for which the link can be found: [Notion - Backend Assignment | FamPay](https://www.notion.so/fampay/Backend-Assignment-FamPay-32aa100dbd8a4479878f174ad8f9d990)
 
 ## Important Links:
-- The Backend(main code) repo can be found at: https://github.com/jugaldb/FamPay-Assignment
-- The frontend repo can be found at: https://github.com/jugaldb/fampay-assignment-frontend
-- The link to the frontend deployment is: https://fampay-task.jugaldb.com
-- The link to the Backend deployment is: https://fampay-task-api.jugaldb.com
-- The postman collection can be found at: https://documenter.getpostman.com/view/10968840/VUqrPd4s
+- YouTube Video: [YouTube Video](https://youtu.be/FBF0OYFLLTo)
+- The Backend(main code) repo can be found at: [Backend repo](https://github.com/jugaldb/FamPay-Assignment)
+- The frontend repo can be found at: [Frontend Repo](https://github.com/jugaldb/fampay-assignment-frontend)
+- The link to the frontend deployment is: [Frontend Deployment](https://fampay-task.jugaldb.com)
+- The link to the Backend deployment is: [Backend Deployment](https://fampay-task-api.jugaldb.com)
+- The postman collection can be found at: [Postman Docs](https://documenter.getpostman.com/view/10968840/VUqrPd4s)
 
 ## Features Implemented
 
@@ -22,6 +23,9 @@ Hi recruiters 🙋🏻‍♂️, this is my submission for the assignment-task f
 ✅ - Dockerize the project. - ```Dockerfile``` and ```docker-compose.yml```
 
 ✅ - It should be scalable and optimised.
+
+
+## Bonus tasks 🌟
 
 ✅ - Add support for supplying multiple API keys so that if quota is exhausted on one, it automatically uses the next available key.
 - Proof of concept
@@ -47,15 +51,37 @@ Hi recruiters 🙋🏻‍♂️, this is my submission for the assignment-task f
   Example - Video title may be ```LSU football practice report, August 23, 2022``` and if I search for ```LSU Practice``` it still shows up
 
   ![Demo](./assets/search-optimisation.png)
+  
+## Tech stack used:
+
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
+
+## Tools used
+![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
+![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
 # Hmm, Lets get a few big questions out of the way quickly. 
 
 ## 1. Why in the world would I choose NodeJs to do this task? 🤯
 
->- Well, JavaScript was listed in the allowed tech stack, while we all know NodeJs
+>- Well, JavaScript was listed in the allowed tech stack, while we all know NodeJs, I feel quite comfortable and proficient with it.
+>- I have my college final exams coming up in a few days, and can't afford to waste any time, while Golang is considered superior to Node for many reasons and I could've easily used that in hindsight, it pretty easy(for me atleast) to set up a scalable Node server. 
+>- Plus Node also performs better with Async communications because of the event loop which runs in the background. Although I have to admit, if I had more time to look at this differently, I would have gone forward with Go + Echo with Postgres as the database of choice.
 
 
-## 2. Why PostgreSQL? 
+## 2. Why Azure instead of AWS 🤦🏻‍♂️?? 
+>- Yeah, we all know how fast AWS is, easy to use, and better chosen by almost all developers, except those who don't.
+>- The choice of using Azure was not an easy one and most definitely not deliberate. Let me take you through what happened, since I had already started with TypeScript, the best and most efficient way is to build and compile TS to JS before running on prod, and that is what i did, but alas, the free tier ```t2.micro``` in AWS couldn't handle what TS had in store for it, and almost all the AMI's on free tier would run of memory since building and compiling to JS along with postgres running is a very very very memory intensive task. I was at a roadblock with AWS free tier, and since I didn't have the time or the resources to throw at it, I did what seemed logical, used Azure's student plan, my knowledge with VMs and learnt a few things about Azure, deployed the backend code on Azure VM, which again had some of it's own issues, but  that is  a story for  another day. 
+>- So this is how I came to be using Azure instead of AWS.
+
+## 3. Why PostgreSQL? 
 
 >- The choice was not quite simple here, historically postgres has been infamous was being not so write-heavy, and struggles with poor perfomance with index creation, often requiring paritioning. So why did I still choose it? 
 >-  After my research on the Google's Youtube API, you can only access 10 batch records with pagination at once with 50 records in each batch, which takes the total to ```50*10 = 500 max records```. 
