@@ -1,6 +1,13 @@
 # FamPay-Assignment
 
 Hi recruiters 🙋🏻‍♂️, this is my submission for the assignment-task for the role of ```Backend Engineer``` for which the link can be found: [Notion - Backend Assignment | FamPay](https://www.notion.so/fampay/Backend-Assignment-FamPay-32aa100dbd8a4479878f174ad8f9d990)
+
+## Important Links:
+- The Backend(main code) repo can be found at: https://github.com/jugaldb/FamPay-Assignment
+- The frontend repo can be found at: https://github.com/jugaldb/fampay-assignment-frontend
+- The link to the frontend deployment is: https://fampay-task.jugaldb.com
+- The link to the Backend deployment is: https://fampay-task-api.jugaldb.com
+
 ## Features Implemented
 
 ✅ -  Server should call the YouTube API continuously in background (async) with some interval (say 10 seconds) for fetching the latest videos for a predefined search query and should store the data of videos (specifically these fields - Video title, description, publishing datetime, thumbnails URLs and any other fields you require) in a database with proper indexes.
