@@ -30,6 +30,8 @@ Hi recruiters 🙋🏻‍♂️, this is my submission for the assignment-task f
 
   - The deployed website can be found on: [Link](https://fampay-task.jugaldb.com)
 
+  - The link to the frontend repo is: [Frotend repo](https://github.com/jugaldb/fampay-assignment-frontend)
+
 
 
 ✅ - Optimise search api, so that it's able to search videos containing partial match for the search query in either video title or description.
