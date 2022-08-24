@@ -132,6 +132,7 @@ class App {
           frontend: "https://fampay-task.jugaldb.com",
           postman_docs:
             "https://documenter.getpostman.com/view/10968840/VUqrPd4s",
+          youtube_video: "https://youtu.be/FBF0OYFLLTo",
         },
       });
     });
