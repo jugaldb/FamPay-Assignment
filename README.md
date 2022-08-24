@@ -67,10 +67,17 @@ Hi recruiters 🙋🏻‍♂️, this is my submission for the assignment-task f
 
 ## 1. Why in the world would I choose NodeJs to do this task? 🤯
 
->- Well, JavaScript was listed in the allowed tech stack, while we all know NodeJs
+>- Well, JavaScript was listed in the allowed tech stack, while we all know NodeJs, I feel quite comfortable and proficient with it.
+>- I have my college final exams coming up in a few days, and can't afford to waste any time, while Golang is considered superior to Node for many reasons and I could've easily used that in hindsight, it pretty easy(for me atleast) to set up a scalable Node server. 
+>- Plus Node also performs better with Async communications because of the event loop which runs in the background. Although I have to admit, if I had more time to look at this differently, I would have gone forward with Go + Echo with Postgres as the database of choice.
 
 
-## 2. Why PostgreSQL? 
+## 2. Why Azure instead of AWS 🤦🏻‍♂️?? 
+>- Yeah, we all know how fast AWS is, easy to use, and better chosen by almost all developers, except those who don't.
+>- The choice of using Azure was not an easy one and most definitely not deliberate. Let me take you through what happened, since I had already started with TypeScript, the best and most efficient way is to build and compile TS to JS before running on prod, and that is what i did, but alas, the free tier ```t2.micro``` in AWS couldn't handle what TS had in store for it, and almost all the AMI's on free tier would run of memory since building and compiling to JS along with postgres running is a very very very memory intensive task. I was at a roadblock with AWS free tier, and since I didn't have the time or the resources to throw at it, I did what seemed logical, used Azure's student plan, my knowledge with VMs and learnt a few things about Azure, deployed the backend code on Azure VM, which again had some of it's own issues, but  that is  a story for  another day. 
+>- So this is how I came to be using Azure instead of AWS.
+
+## 3. Why PostgreSQL? 
 
 >- The choice was not quite simple here, historically postgres has been infamous was being not so write-heavy, and struggles with poor perfomance with index creation, often requiring paritioning. So why did I still choose it? 
 >-  After my research on the Google's Youtube API, you can only access 10 batch records with pagination at once with 50 records in each batch, which takes the total to ```50*10 = 500 max records```. 
